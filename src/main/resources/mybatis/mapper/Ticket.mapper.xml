@@ -1,0 +1,514 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.dao.TicketMapper">
+    <resultMap id="BaseResultMap" type="com.example.demo.bean.RedTicketBillBO">
+        <id column="ID" property="id" jdbcType="INTEGER"/>
+        <result column="NSRSBH" property="nsrsbh" jdbcType="VARCHAR"/>
+        <result column="YFPDM" property="yfpdm" jdbcType="VARCHAR"/>
+        <result column="YFPHM" property="yfphm" jdbcType="VARCHAR"/>
+        <result column="KPZDDM" property="kpzddm" jdbcType="VARCHAR"/>
+        <result column="SQLX" property="sqlx" jdbcType="INTEGER"/>
+        <result column="SFDK" property="sfdk" jdbcType="INTEGER"/>
+        <result column="SQLY" property="sqly" jdbcType="VARCHAR"/>
+        <result column="YWLX" property="ywlx" jdbcType="INTEGER"/>
+        <result column="SQRMC" property="sqrmc" jdbcType="VARCHAR"/>
+        <result column="SQJQMC" property="sqjqmc" jdbcType="VARCHAR"/>
+        <result column="LXFS" property="lxfs" jdbcType="VARCHAR"/>
+        <result column="XHDWSBH" property="xhdwsbh" jdbcType="VARCHAR"/>
+        <result column="XHDWMC" property="xhdwmc" jdbcType="VARCHAR"/>
+        <result column="GHDWSBH" property="ghdwsbh" jdbcType="VARCHAR"/>
+        <result column="GHDWMC" property="ghdwmc" jdbcType="VARCHAR"/>
+        <result column="ZDBZ" property="zdbz" jdbcType="VARCHAR"/>
+        <result column="SQDH" property="sqdh" jdbcType="VARCHAR"/>
+        <result column="XXBBH" property="xxbbh" jdbcType="VARCHAR"/>
+        <result column="CLZT" property="clzt" jdbcType="INTEGER"/>
+        <result column="JE" property="je" jdbcType="VARCHAR"/>
+        <result column="SE" property="se" jdbcType="VARCHAR"/>
+        <result column="TKRID" property="tkrid" jdbcType="INTEGER"/>
+        <result column="TKRQ" property="tkrq" jdbcType="TIMESTAMP"/>
+        <result column="RETURNCODE" property="returncode" jdbcType="VARCHAR"/>
+        <result column="RETURNMSG" property="returnmsg" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+             ID, NSRSBH, YFPDM,
+        YFPHM, KPZDDM, SQLX,
+        SFDK, SQLY, YWLX,
+        SQRMC, SQJQMC, LXFS, XHDWSBH,
+        XHDWMC, GHDWSBH, GHDWMC,
+        ZDBZ, SQDH, XXBBH, CLZT,
+        JE, SE, TKRID, TKRQ,RETURNCODE,RETURNMSG
+    </sql>
+    <sql id="Base_Response_List">
+       ID,YFPDM,YFPHM,SQLY,SQRMC,SQJQMC,LXFS,GHDWMC,ZDBZ,SQDH, XXBBH, CLZT,
+        JE, SE, TKRID, TKRQ
+    </sql>
+    <!--获取全部数据-->
+    <select id="selectAll" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Response_List"/>
+        FROM gpxx_hzxxb
+    </select>
+    <!--获取某一数据-->
+    <select id="selectTicketByKey" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Response_List"/>
+        FROM gpxx_hzxxb
+        where ID = #{id,jdbcType=INTEGER}
+    </select>
+    <!--根据条件获取信息列表-->
+    <select id="selectTicketList" resultMap="BaseResultMap" parameterType="com.example.demo.bean.RedTicketBillBO">
+        select
+        <include refid="Base_Response_List"/>
+        from gpxx_hzxxb
+        <where> 1=1
+            <if test="ghdwmc !=null and ghdwmc != ''" >
+                and GHDWMC = #{ghdwmc,jdbcType=VARCHAR}
+            </if>
+            <if test="xxbbh !=null and xxbbh != ''" >
+                and XXBBH = #{xxbbh,jdbcType=VARCHAR}
+            </if>
+            <if test="xhdwmc !=null and xhdwmc != ''" >
+                and XHDWMC = #{xhdwmc,jdbcType=VARCHAR}
+            </if>
+            <if test="clzt !=null and clzt != ''" >
+                and CLZT = #{clzt,jdbcType=VARCHAR}
+            </if>
+
+            <if test="startDate !=null and startDate != ''" >
+                and DATE(TKRQ) <![CDATA[ >= ]]>  #{startDate,jdbcType=VARCHAR}
+            </if>
+            <if test="endDate !=null and endDate != ''" >
+                and DATE(TKRQ) <![CDATA[ <= ]]> #{endDate,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+    <!--修改信息-->
+    <update id="updateTicket" parameterType="com.example.demo.bean.RedTicketBillBO">
+        update gpxx_hzxxb
+        <set>
+            <if test="nsrsbh != null">
+                NSRSBH = #{nsrsbh,jdbcType=VARCHAR},
+            </if>
+            <if test="yfpdm != null">
+                YFPDM = #{yfpdm,jdbcType=VARCHAR},
+            </if>
+            <if test="yfphm != null">
+                YFPHM = #{yfphm,jdbcType=VARCHAR},
+            </if>
+            <if test="kpzddm != null">
+                KPZDDM = #{kpzddm,jdbcType=VARCHAR},
+            </if>
+            <if test="sqlx != null">
+                SQLX=  #{sqlx,jdbcType=INTEGER},
+            </if>
+            <if test="sfdk != null">
+                SFDK = #{sfdk,jdbcType=INTEGER},
+            </if>
+            <if test="sqly != null">
+                SQLY =  #{sqly,jdbcType=VARCHAR},
+            </if>
+            <if test="ywlx != null">
+                YWLX = #{ywlx,jdbcType=INTEGER},
+            </if>
+            <if test="sqrmc != null">
+                SQRMC =  #{sqrmc,jdbcType=VARCHAR},
+            </if>
+            <if test="sqjqmc != null">
+                SQJQMC = #{sqjqmc,jdbcType=VARCHAR},
+            </if>
+            <if test="lxfs != null">
+                LXFS = #{lxfs,jdbcType=VARCHAR},
+            </if>
+            <if test="xhdwsbh != null">
+                XHDWSBH = #{xhdwsbh,jdbcType=VARCHAR},
+            </if>
+            <if test="xhdwmc  != null">
+                XHDWMC =  #{xhdwmc,jdbcType=VARCHAR},
+            </if>
+            <if test="ghdwsbh != null">
+                GHDWSBH =  #{ghdwsbh,jdbcType=VARCHAR},
+            </if>
+            <if test="ghdwmc != null">
+                GHDWMC = #{ghdwmc,jdbcType=VARCHAR},
+            </if>
+            <if test="zdbz != null">
+                ZDBZ = #{zdbz,jdbcType=VARCHAR},
+            </if>
+            <if test="sqdh != null">
+                SQDH = #{sqdh,jdbcType=VARCHAR},
+            </if>
+            <if test="xxbbh != null">
+                XXBBH = #{xxbbh,jdbcType=VARCHAR},
+            </if>
+            <if test="clzt != null">
+                CLZT =  #{clzt,jdbcType=INTEGER},
+            </if>
+            <if test="je != null">
+                JE = #{je,jdbcType=VARCHAR},
+            </if>
+            <if test="se != null">
+                SE = #{se,jdbcType=VARCHAR},
+            </if>
+            <if test="tkrid != null">
+                TKRID =   #{tkrid,jdbcType=INTEGER},
+            </if>
+            <if test="tkrq != null">
+                TKRQ =  #{tkrq,jdbcType=TIMESTAMP},
+            </if>
+            <if test="returncode != null">
+                RETURNCODE =  #{returncode,jdbcType=VARCHAR},
+            </if>
+            <if test="returnmsg != null">
+                RETURNMSG = #{returnmsg,jdbcType=VARCHAR}
+            </if>
+
+        </set>
+        where ID = #{id,jdbcType=INTEGER}
+    </update>
+    <!--购买方添加信息-->
+    <insert id="InsertTicket" parameterType="com.example.demo.bean.RedTicketBillBO" >
+        insert into gpxx_hzxxb
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="nsrsbh != null">
+                NSRSBH,
+            </if>
+            <if test="yfpdm != null">
+                YFPDM,
+            </if>
+            <if test="yfphm != null">
+                YFPHM,
+            </if>
+            <if test="kpzddm != null">
+                KPZDDM,
+            </if>
+            <if test="sqlx != null">
+                SQLX,
+            </if>
+            <if test="sfdk != null">
+                SFDK,
+            </if>
+            <if test="sqly != null">
+                SQLY,
+            </if>
+            <if test="ywlx != null">
+                YWLX,
+            </if>
+            <if test="sqrmc != null">
+                SQRMC,
+            </if>
+            <if test="sqjqmc != null">
+                SQJQMC,
+            </if>
+            <if test="lxfs != null">
+                LXFS,
+            </if>
+            <if test="xhdwsbh != null">
+                XHDWSBH,
+            </if>
+            <if test="xhdwmc != null">
+                XHDWMC,
+            </if>
+            <if test="ghdwsbh != null">
+                GHDWSBH,
+            </if>
+            <if test="ghdwmc != null">
+                GHDWMC,
+            </if>
+            <if test="zdbz != null">
+                ZDBZ,
+            </if>
+            <if test="sqdh != null">
+                SQDH,
+            </if>
+            <if test="xxbbh != null">
+                XXBBH,
+            </if>
+            <if test="clzt != null">
+                CLZT,
+            </if>
+            <if test="je != null">
+                JE,
+            </if>
+            <if test="se != null">
+                SE,
+            </if>
+            <if test="tkrid != null">
+                TKRID,
+            </if>
+            <if test="tkrq != null">
+                TKRQ,
+            </if>
+            <if test="returncode != null">
+                RETURNCODE,
+            </if>
+            <if test="returnmsg != null">
+                RETURNMSG
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="nsrsbh != null">
+                #{nsrsbh,jdbcType=VARCHAR},
+            </if>
+            <if test="yfpdm != null">
+                #{yfpdm,jdbcType=VARCHAR},
+            </if>
+            <if test="yfphm != null">
+                #{yfphm,jdbcType=VARCHAR},
+            </if>
+            <if test="kpzddm != null">
+                #{kpzddm,jdbcType=VARCHAR},
+            </if>
+            <if test="sqlx != null">
+                #{sqlx,jdbcType=INTEGER},
+            </if>
+            <if test="sfdk != null">
+                #{sfdk,jdbcType=INTEGER},
+            </if>
+            <if test="sqly != null">
+                #{sqly,jdbcType=VARCHAR},
+            </if>
+            <if test="ywlx != null">
+                #{ywlx,jdbcType=INTEGER},
+            </if>
+            <if test="sqrmc != null">
+                #{sqrmc,jdbcType=VARCHAR},
+            </if>
+            <if test="sqjqmc != null">
+                #{sqjqmc,jdbcType=VARCHAR},
+            </if>
+            <if test="lxfs != null">
+                #{lxfs,jdbcType=VARCHAR},
+            </if>
+            <if test="xhdwsbh != null">
+                #{xhdwsbh,jdbcType=VARCHAR},
+            </if>
+            <if test="xhdwmc  != null">
+                #{xhdwmc,jdbcType=VARCHAR},
+            </if>
+            <if test="ghdwsbh != null">
+                #{ghdwsbh,jdbcType=VARCHAR},
+            </if>
+            <if test="ghdwmc != null">
+                #{ghdwmc,jdbcType=VARCHAR},
+            </if>
+            <if test="zdbz != null">
+                #{zdbz,jdbcType=VARCHAR},
+            </if>
+            <if test="sqdh != null">
+                #{sqdh,jdbcType=VARCHAR},
+            </if>
+            <if test="xxbbh != null">
+                #{xxbbh,jdbcType=VARCHAR},
+            </if>
+            <if test="clzt != null">
+                #{clzt,jdbcType=INTEGER},
+            </if>
+            <if test="je != null">
+                #{je,jdbcType=VARCHAR},
+            </if>
+            <if test="se != null">
+                #{se,jdbcType=VARCHAR},
+            </if>
+            <if test="tkrid != null">
+                #{tkrid,jdbcType=INTEGER},
+            </if>
+            <if test="tkrq != null">
+                #{tkrq,jdbcType=TIMESTAMP},
+            </if>
+            <if test="returncode != null">
+                #{returncode,jdbcType=VARCHAR},
+            </if>
+            <if test="returnmsg != null">
+                #{returnmsg,jdbcType=VARCHAR}
+            </if>
+        </trim>
+
+    </insert>
+    <!--购买方添加信息-->
+    <insert id="xhfInsertTicket" parameterType="com.example.demo.bean.RedTicketBillBO" >
+        insert into gpxx_hzxxb
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="nsrsbh != null">
+                NSRSBH,
+            </if>
+            <if test="yfpdm != null">
+                YFPDM,
+            </if>
+            <if test="yfphm != null">
+                YFPHM,
+            </if>
+            <if test="kpzddm != null">
+                KPZDDM,
+            </if>
+            <if test="sqlx != null">
+                SQLX,
+            </if>
+            <if test="sfdk != null">
+                SFDK,
+            </if>
+            <if test="sqly != null">
+                SQLY,
+            </if>
+            <if test="ywlx != null">
+                YWLX,
+            </if>
+            <if test="sqrmc != null">
+                SQRMC,
+            </if>
+            <if test="sqjqmc != null">
+                SQJQMC,
+            </if>
+            <if test="lxfs != null">
+                LXFS,
+            </if>
+            <if test="xhdwsbh != null">
+                XHDWSBH,
+            </if>
+            <if test="xhdwmc != null">
+                XHDWMC,
+            </if>
+            <if test="ghdwsbh != null">
+                GHDWSBH,
+            </if>
+            <if test="ghdwmc != null">
+                GHDWMC,
+            </if>
+            <if test="zdbz != null">
+                ZDBZ,
+            </if>
+            <if test="sqdh != null">
+                SQDH,
+            </if>
+            <if test="xxbbh != null">
+                XXBBH,
+            </if>
+            <if test="clzt != null">
+                CLZT,
+            </if>
+            <if test="je != null">
+                JE,
+            </if>
+            <if test="se != null">
+                SE,
+            </if>
+            <if test="tkrid != null">
+                TKRID,
+            </if>
+            <if test="tkrq != null">
+                TKRQ,
+            </if>
+            <if test="returncode != null">
+                RETURNCODE,
+            </if>
+            <if test="returnmsg != null">
+                RETURNMSG
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="nsrsbh != null">
+                #{nsrsbh,jdbcType=VARCHAR},
+            </if>
+            <if test="yfpdm != null">
+                #{yfpdm,jdbcType=VARCHAR},
+            </if>
+            <if test="yfphm != null">
+                #{yfphm,jdbcType=VARCHAR},
+            </if>
+            <if test="kpzddm != null">
+                #{kpzddm,jdbcType=VARCHAR},
+            </if>
+            <if test="sqlx != null">
+                #{sqlx,jdbcType=INTEGER},
+            </if>
+            <if test="sfdk != null">
+                #{sfdk,jdbcType=INTEGER},
+            </if>
+            <if test="sqly != null">
+                #{sqly,jdbcType=VARCHAR},
+            </if>
+            <if test="ywlx != null">
+                #{ywlx,jdbcType=INTEGER},
+            </if>
+            <if test="sqrmc != null">
+                #{sqrmc,jdbcType=VARCHAR},
+            </if>
+            <if test="sqjqmc != null">
+                #{sqjqmc,jdbcType=VARCHAR},
+            </if>
+            <if test="lxfs != null">
+                #{lxfs,jdbcType=VARCHAR},
+            </if>
+            <if test="xhdwsbh != null">
+                #{xhdwsbh,jdbcType=VARCHAR},
+            </if>
+            <if test="xhdwmc  != null">
+                #{xhdwmc,jdbcType=VARCHAR},
+            </if>
+            <if test="ghdwsbh != null">
+                #{ghdwsbh,jdbcType=VARCHAR},
+            </if>
+            <if test="ghdwmc != null">
+                #{ghdwmc,jdbcType=VARCHAR},
+            </if>
+            <if test="zdbz != null">
+                #{zdbz,jdbcType=VARCHAR},
+            </if>
+            <if test="sqdh != null">
+                #{sqdh,jdbcType=VARCHAR},
+            </if>
+            <if test="xxbbh != null">
+                #{xxbbh,jdbcType=VARCHAR},
+            </if>
+            <if test="clzt != null">
+                #{clzt,jdbcType=INTEGER},
+            </if>
+            <if test="je != null">
+                #{je,jdbcType=VARCHAR},
+            </if>
+            <if test="se != null">
+                #{se,jdbcType=VARCHAR},
+            </if>
+            <if test="tkrid != null">
+                #{tkrid,jdbcType=INTEGER},
+            </if>
+            <if test="tkrq != null">
+                #{tkrq,jdbcType=TIMESTAMP},
+            </if>
+            <if test="returncode != null">
+                #{returncode,jdbcType=VARCHAR},
+            </if>
+            <if test="returnmsg != null">
+                #{returnmsg,jdbcType=VARCHAR}
+            </if>
+        </trim>
+
+    </insert>
+    <!--根据ID删除信息-->
+    <delete id="deleteTicketByKey" parameterType="com.example.demo.bean.RedTicketBillBO">
+        delete from gpxx_hzxxb
+        where ID = #{id,jdbcType=INTEGER}
+    </delete>
+    <!--批量删除-->
+    <delete id="deleteTicketList" parameterType="int">
+        delete from gpxx_hzxxb where ID in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id,jdbcType=INTEGER}
+        </foreach>
+    </delete>
+
+
+
+
+</mapper>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.dao.ApplyBillLineMapper">
+    <resultMap id="BaseResultMap" type="com.example.demo.bean.ApplyBillLineBO">
+        <id column="ID" property="id" jdbcType="INTEGER"/>
+        <result column="APPLY_ID" property="applyId" jdbcType="INTEGER"/>
+        <result column="FPHXZ" property="fphxz" jdbcType="DECIMAL"/>
+        <result column="SPBM" property="spbm" jdbcType="VARCHAR"/>
+        <result column="ZXBM" property="zxbm" jdbcType="VARCHAR"/>
+        <result column="YHZCBS" property="yhzcbs" jdbcType="VARCHAR"/>
+        <result column="LSLBS" property="lslbs" jdbcType="VARCHAR"/>
+        <result column="ZZSTSGL" property="zzstsgl" jdbcType="VARCHAR"/>
+        <result column="XMMC" property="xmmc" jdbcType="VARCHAR"/>
+        <result column="DW" property="dw" jdbcType="VARCHAR"/>
+        <result column="GGXH" property="ggxh" jdbcType="VARCHAR"/>
+        <result column="XMSL" property="xmsl" jdbcType="VARCHAR"/>
+        <result column="XMDJ" property="xmdj" jdbcType="VARCHAR"/>
+        <result column="HSXMDJ" property="hsxmdj" jdbcType="VARCHAR"/>
+        <result column="HSXMJE" property="hsxmje" jdbcType="DOUBLE"/>
+        <result column="XMJE" property="xmje" jdbcType="DOUBLE"/>
+        <result column="SL" property="sl" jdbcType="DOUBLE"/>
+        <result column="SE" property="se" jdbcType="DOUBLE"/>
+        <result column="SEQ_NUM" property="seqNum" jdbcType="DECIMAL"/>
+        <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="YWLX" property="ywlx" jdbcType="VARCHAR"/>
+        <result column="YWBH" property="ywbh" jdbcType="VARCHAR"/>
+        <result column="BZ" property="bz" jdbcType="VARCHAR"/>
+        <result column="HSBZ" property="hsbz" jdbcType="INTEGER"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        ID, APPLY_ID, FPHXZ, SPBM, ZXBM, YHZCBS, LSLBS, ZZSTSGL, XMMC, DW, GGXH, XMSL, XMDJ,
+        HSXMDJ, HSXMJE, XMJE, SL, SE, SEQ_NUM, CREATE_TIME, YWLX, YWBH, BZ, HSBZ
+    </sql>
+    <!--批量插入申请单行信息-->
+    <insert id="insertApplyLineBatch" parameterType="java.util.List">
+        insert into gpxx_apply_bill_line
+        (
+        ID, APPLY_ID, FPHXZ,
+        SPBM, ZXBM, YHZCBS,
+        LSLBS, ZZSTSGL, XMMC,
+        DW, GGXH, XMSL, XMDJ,
+        HSXMDJ, HSXMJE, XMJE,
+        SL, SE, SEQ_NUM, CREATE_TIME,
+        YWLX, YWBH, BZ, HSBZ
+        )
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+            #{item.id,jdbcType=INTEGER}, #{item.applyId,jdbcType=INTEGER}, #{item.fphxz,jdbcType=DECIMAL},
+            #{item.spbm,jdbcType=VARCHAR}, #{item.zxbm,jdbcType=VARCHAR}, #{item.yhzcbs,jdbcType=VARCHAR},
+            #{item.lslbs,jdbcType=VARCHAR}, #{item.zzstsgl,jdbcType=VARCHAR}, #{item.xmmc,jdbcType=VARCHAR},
+            #{item.dw,jdbcType=VARCHAR}, #{item.ggxh,jdbcType=VARCHAR}, #{item.xmsl,jdbcType=VARCHAR}, #{item.xmdj,jdbcType=VARCHAR},
+            #{item.hsxmdj,jdbcType=VARCHAR}, #{item.hsxmje,jdbcType=DOUBLE}, #{item.xmje,jdbcType=DOUBLE},
+            #{item.sl,jdbcType=DOUBLE}, #{item.se,jdbcType=DOUBLE}, #{item.seqNum,jdbcType=DECIMAL}, #{item.createTime,jdbcType=TIMESTAMP},
+            #{item.ywlx,jdbcType=VARCHAR}, #{item.ywbh,jdbcType=VARCHAR}, #{item.bz,jdbcType=VARCHAR}, #{item.hsbz,jdbcType=INTEGER}
+            )
+        </foreach>
+    </insert>
+</mapper>

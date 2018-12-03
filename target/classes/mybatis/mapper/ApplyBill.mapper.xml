@@ -1,0 +1,1359 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.dao.ApplyBillMapper">
+    <resultMap id="BaseResultMap" type="com.example.demo.bean.ApplyBillBO">
+        <id column="ID" property="id" jdbcType="INTEGER"/>
+        <result column="LSH" property="lsh" jdbcType="VARCHAR"/>
+        <result column="APPLY_ORDER_NUM" property="applyOrderNum" jdbcType="VARCHAR"/>
+        <result column="KPLX" property="kplx" jdbcType="INTEGER"/>
+        <result column="XSF_ID" property="xsfId" jdbcType="VARCHAR"/>
+        <result column="GMF_NSRSBH" property="gmfNsrsbh" jdbcType="VARCHAR"/>
+        <result column="GMF_MC" property="gmfMc" jdbcType="VARCHAR"/>
+        <result column="GMF_DZ" property="gmfDz" jdbcType="VARCHAR"/>
+        <result column="GMF_DH" property="gmfDh" jdbcType="VARCHAR"/>
+        <result column="GMF_YHZH" property="gmfYhzh" jdbcType="VARCHAR"/>
+        <result column="KPR" property="kpr" jdbcType="VARCHAR"/>
+        <result column="SKR" property="skr" jdbcType="VARCHAR"/>
+        <result column="FHR" property="fhr" jdbcType="VARCHAR"/>
+        <result column="YFP_DM" property="yfpDm" jdbcType="VARCHAR"/>
+        <result column="YFP_HM" property="yfpHm" jdbcType="VARCHAR"/>
+        <result column="JSHJ" property="jshj" jdbcType="DOUBLE"/>
+        <result column="HJJE" property="hjje" jdbcType="DOUBLE"/>
+        <result column="HJSE" property="hjse" jdbcType="DOUBLE"/>
+        <result column="YX" property="yx" jdbcType="VARCHAR"/>
+        <result column="SJH" property="sjh" jdbcType="VARCHAR"/>
+        <result column="SFHC" property="sfhc" jdbcType="VARCHAR"/>
+        <result column="LYXT" property="lyxt" jdbcType="VARCHAR"/>
+        <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="SOURCE" property="source" jdbcType="VARCHAR"/>
+        <result column="WECHAT_OPENID" property="wechatOpenid" jdbcType="VARCHAR"/>
+        <result column="ALIPAY_OPENID" property="alipayOpenid" jdbcType="VARCHAR"/>
+        <result column="BZ" property="bz" jdbcType="VARCHAR"/>
+        <result column="FP_DM" property="fpDm" jdbcType="VARCHAR"/>
+        <result column="FP_HM" property="fpHm" jdbcType="VARCHAR"/>
+        <result column="KPRQ" property="kprq" jdbcType="TIMESTAMP"/>
+        <result column="CREATOR" property="creator" jdbcType="INTEGER"/>
+        <result column="GMF_DZDH" property="gmfDzdh" jdbcType="VARCHAR"/>
+        <result column="XSF_JGID" property="xsfJgid" jdbcType="INTEGER"/>
+        <result column="XSF_JGMC" property="xsfJgmc" jdbcType="VARCHAR"/>
+        <result column="XSF_BMID" property="xsfBmid" jdbcType="INTEGER"/>
+        <result column="XSF_BMMC" property="xsfBmmc" jdbcType="VARCHAR"/>
+        <result column="XSF_NSRSBH" property="xsfNsrsbh" jdbcType="VARCHAR"/>
+        <result column="KPZDBS" property="kpzdbs" jdbcType="VARCHAR"/>
+        <result column="FPLX" property="fplx" jdbcType="VARCHAR"/>
+        <result column="QDBS" property="qdbs" jdbcType="INTEGER"/>
+        <result column="ZSFS" property="zsfs" jdbcType="INTEGER"/>
+        <result column="TSPZ" property="tspz" jdbcType="VARCHAR"/>
+        <result column="KCE" property="kce" jdbcType="DECIMAL"/>
+        <result column="XXBBM" property="xxbbm" jdbcType="VARCHAR"/>
+        <result column="SQZT" property="sqzt" jdbcType="INTEGER"/>
+        <result column="SPZT" property="spzt" jdbcType="INTEGER"/>
+        <result column="DYSPR_ID" property="dysprId" jdbcType="INTEGER"/>
+        <result column="DYSPR_MC" property="dysprMc" jdbcType="VARCHAR"/>
+        <result column="DYSPR_YJ" property="dysprYj" jdbcType="VARCHAR"/>
+        <result column="DYSPR_CZSJ" property="dysprCzsj" jdbcType="TIMESTAMP"/>
+        <result column="DESPR_ID" property="desprId" jdbcType="INTEGER"/>
+        <result column="DESPR_MC" property="desprMc" jdbcType="VARCHAR"/>
+        <result column="DESPR_YJ" property="desprYj" jdbcType="VARCHAR"/>
+        <result column="DRSPR_CZSJ" property="drsprCzsj" jdbcType="TIMESTAMP"/>
+        <result column="KPR_ID" property="kprId" jdbcType="INTEGER"/>
+        <result column="KPR_CZSJ" property="kprCzsj" jdbcType="TIMESTAMP"/>
+        <result column="SQR_ID" property="sqrId" jdbcType="INTEGER"/>
+        <result column="SQR" property="sqr" jdbcType="VARCHAR"/>
+        <result column="JG_ID" property="jgId" jdbcType="INTEGER"/>
+        <result column="JG_MC" property="jgMc" jdbcType="VARCHAR"/>
+        <result column="SQLX" property="sqlx" jdbcType="INTEGER"/>
+        <result column="BM_ID" property="bmId" jdbcType="INTEGER"/>
+        <result column="BM_MC" property="bmMc" jdbcType="VARCHAR"/>
+        <result column="SQR_DH" property="sqrDh" jdbcType="VARCHAR"/>
+        <result column="KPZT" property="kpzt" jdbcType="INTEGER"/>
+        <result column="SQ_TIME" property="sqTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--一对多查询的resultMap-->
+    <resultMap id="ApplyResultMap" type="com.example.demo.bean.ApplyBillBO">
+        <id column="ID" property="id" jdbcType="INTEGER"/>
+        <result column="LSH" property="lsh" jdbcType="VARCHAR"/>
+        <result column="APPLY_ORDER_NUM" property="applyOrderNum" jdbcType="VARCHAR"/>
+        <result column="KPLX" property="kplx" jdbcType="INTEGER"/>
+        <result column="XSF_ID" property="xsfId" jdbcType="VARCHAR"/>
+        <result column="GMF_NSRSBH" property="gmfNsrsbh" jdbcType="VARCHAR"/>
+        <result column="GMF_MC" property="gmfMc" jdbcType="VARCHAR"/>
+        <result column="GMF_DZ" property="gmfDz" jdbcType="VARCHAR"/>
+        <result column="GMF_DH" property="gmfDh" jdbcType="VARCHAR"/>
+        <result column="GMF_YHZH" property="gmfYhzh" jdbcType="VARCHAR"/>
+        <result column="KPR" property="kpr" jdbcType="VARCHAR"/>
+        <result column="SKR" property="skr" jdbcType="VARCHAR"/>
+        <result column="FHR" property="fhr" jdbcType="VARCHAR"/>
+        <result column="YFP_DM" property="yfpDm" jdbcType="VARCHAR"/>
+        <result column="YFP_HM" property="yfpHm" jdbcType="VARCHAR"/>
+        <result column="JSHJ" property="jshj" jdbcType="DOUBLE"/>
+        <result column="HJJE" property="hjje" jdbcType="DOUBLE"/>
+        <result column="HJSE" property="hjse" jdbcType="DOUBLE"/>
+        <result column="YX" property="yx" jdbcType="VARCHAR"/>
+        <result column="SJH" property="sjh" jdbcType="VARCHAR"/>
+        <result column="SFHC" property="sfhc" jdbcType="VARCHAR"/>
+        <result column="LYXT" property="lyxt" jdbcType="VARCHAR"/>
+        <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="SOURCE" property="source" jdbcType="VARCHAR"/>
+        <result column="WECHAT_OPENID" property="wechatOpenid" jdbcType="VARCHAR"/>
+        <result column="ALIPAY_OPENID" property="alipayOpenid" jdbcType="VARCHAR"/>
+        <result column="BZ" property="bz" jdbcType="VARCHAR"/>
+        <result column="FP_DM" property="fpDm" jdbcType="VARCHAR"/>
+        <result column="FP_HM" property="fpHm" jdbcType="VARCHAR"/>
+        <result column="KPRQ" property="kprq" jdbcType="TIMESTAMP"/>
+        <result column="CREATOR" property="creator" jdbcType="INTEGER"/>
+        <result column="GMF_DZDH" property="gmfDzdh" jdbcType="VARCHAR"/>
+        <result column="XSF_JGID" property="xsfJgid" jdbcType="INTEGER"/>
+        <result column="XSF_JGMC" property="xsfJgmc" jdbcType="VARCHAR"/>
+        <result column="XSF_BMID" property="xsfBmid" jdbcType="INTEGER"/>
+        <result column="XSF_BMMC" property="xsfBmmc" jdbcType="VARCHAR"/>
+        <result column="XSF_NSRSBH" property="xsfNsrsbh" jdbcType="VARCHAR"/>
+        <result column="KPZDBS" property="kpzdbs" jdbcType="VARCHAR"/>
+        <result column="FPLX" property="fplx" jdbcType="VARCHAR"/>
+        <result column="QDBS" property="qdbs" jdbcType="INTEGER"/>
+        <result column="ZSFS" property="zsfs" jdbcType="INTEGER"/>
+        <result column="TSPZ" property="tspz" jdbcType="VARCHAR"/>
+        <result column="KCE" property="kce" jdbcType="DECIMAL"/>
+        <result column="XXBBM" property="xxbbm" jdbcType="VARCHAR"/>
+        <result column="SQZT" property="sqzt" jdbcType="INTEGER"/>
+        <result column="SPZT" property="spzt" jdbcType="INTEGER"/>
+        <result column="DYSPR_ID" property="dysprId" jdbcType="INTEGER"/>
+        <result column="DYSPR_MC" property="dysprMc" jdbcType="VARCHAR"/>
+        <result column="DYSPR_YJ" property="dysprYj" jdbcType="VARCHAR"/>
+        <result column="DYSPR_CZSJ" property="dysprCzsj" jdbcType="TIMESTAMP"/>
+        <result column="DESPR_ID" property="desprId" jdbcType="INTEGER"/>
+        <result column="DESPR_MC" property="desprMc" jdbcType="VARCHAR"/>
+        <result column="DESPR_YJ" property="desprYj" jdbcType="VARCHAR"/>
+        <result column="DRSPR_CZSJ" property="drsprCzsj" jdbcType="TIMESTAMP"/>
+        <result column="KPR_ID" property="kprId" jdbcType="INTEGER"/>
+        <result column="SQR_ID" property="sqrId" jdbcType="INTEGER"/>
+        <result column="JG_ID" property="jgId" jdbcType="INTEGER"/>
+        <result column="JG_MC" property="jgMc" jdbcType="VARCHAR"/>
+        <result column="SQLX" property="sqlx" jdbcType="INTEGER"/>
+        <result column="BM_ID" property="bmId" jdbcType="INTEGER"/>
+        <result column="BM_MC" property="bmMc" jdbcType="VARCHAR"/>
+        <result column="SQR_DH" property="sqrDh" jdbcType="VARCHAR"/>
+        <result column="KPZT" property="kpzt" jdbcType="INTEGER"/>
+        <result column="SQ_TIME" property="sqTime" jdbcType="TIMESTAMP"/>
+        <collection property="applyBillLineBOList" javaType="java.util.List"
+                    ofType="com.example.demo.bean.ApplyBillLineBO">
+            <id column="ID" property="id" jdbcType="INTEGER"/>
+            <result column="APPLY_ID" property="applyId" jdbcType="INTEGER"/>
+            <result column="FPHXZ" property="fphxz" jdbcType="DECIMAL"/>
+            <result column="SPBM" property="spbm" jdbcType="VARCHAR"/>
+            <result column="ZXBM" property="zxbm" jdbcType="VARCHAR"/>
+            <result column="YHZCBS" property="yhzcbs" jdbcType="VARCHAR"/>
+            <result column="LSLBS" property="lslbs" jdbcType="VARCHAR"/>
+            <result column="ZZSTSGL" property="zzstsgl" jdbcType="VARCHAR"/>
+            <result column="XMMC" property="xmmc" jdbcType="VARCHAR"/>
+            <result column="DW" property="dw" jdbcType="VARCHAR"/>
+            <result column="GGXH" property="ggxh" jdbcType="VARCHAR"/>
+            <result column="XMSL" property="xmsl" jdbcType="VARCHAR"/>
+            <result column="XMDJ" property="xmdj" jdbcType="VARCHAR"/>
+            <result column="HSXMDJ" property="hsxmdj" jdbcType="VARCHAR"/>
+            <result column="HSXMJE" property="hsxmje" jdbcType="DOUBLE"/>
+            <result column="XMJE" property="xmje" jdbcType="DOUBLE"/>
+            <result column="SL" property="sl" jdbcType="DOUBLE"/>
+            <result column="SE" property="se" jdbcType="DOUBLE"/>
+            <result column="SEQ_NUM" property="seqNum" jdbcType="DECIMAL"/>
+            <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP"/>
+            <result column="YWLX" property="ywlx" jdbcType="VARCHAR"/>
+            <result column="YWBH" property="ywbh" jdbcType="VARCHAR"/>
+            <result column="BZ" property="bz" jdbcType="VARCHAR"/>
+            <result column="HSBZ" property="hsbz" jdbcType="INTEGER"/>
+        </collection>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    ID, LSH, KPLX, XSF_ID, GMF_NSRSBH, GMF_MC, GMF_DZ, GMF_DH, GMF_YHZH, KPR, SKR, FHR,
+    YFP_DM, YFP_HM, JSHJ, HJJE, HJSE, YX, SJH, SFHC, LYXT, CREATE_TIME, SOURCE, WECHAT_OPENID,
+    ALIPAY_OPENID, BZ, FP_DM, FP_HM, KPRQ, CREATOR, GMF_DZDH, XSF_JGID, XSF_JGMC, XSF_BMID,
+    XSF_BMMC, XSF_NSRSBH, KPZDBS, FPLX, QDBS, ZSFS, TSPZ, KCE, XXBBM, SQZT, SPZT, DYSPR_ID,
+    DYSPR_MC, DYSPR_YJ, DYSPR_CZSJ, DESPR_ID, DESPR_MC, DESPR_YJ, DRSPR_CZSJ, KPR_ID, KPR_CZSJ,
+    SQR_ID, SQR, JG_ID, JG_MC, SQLX, BM_ID, BM_MC, SQR_DH, KPZT, SQ_TIME
+  </sql>
+    <sql id="ApplyHeaderParam">
+        header.ID, header.LSH,  header.KPLX, header.XSF_ID, header.GMF_NSRSBH, header.GMF_MC, header.GMF_DZ, header.GMF_DH, header.GMF_YHZH, header.KPR, header.SKR, header.FHR, header.
+        YFP_DM, header.YFP_HM, header.JSHJ, header.HJJE, header.HJSE, header.YX, header.SJH, header.SFHC, header.LYXT, header.CREATE_TIME, header.SOURCE, header.WECHAT_OPENID, header.
+        ALIPAY_OPENID, header.BZ, header.FP_DM, header.FP_HM, header.KPRQ, header.CREATOR, header.GMF_DZDH, header.XSF_JGID, header.XSF_JGMC, header.XSF_BMID, header.
+        XSF_BMMC, header.XSF_NSRSBH, header.KPZDBS, header.FPLX, header.QDBS, header.ZSFS, header.TSPZ, header.KCE, header.XXBBM, header.SQZT, header.SQZT, header.DYSPR_ID, header.
+        DYSPR_MC, header.DYSPR_YJ, header.DYSPR_CZSJ, header.DESPR_ID, header.DESPR_MC, header.DESPR_YJ, header.DRSPR_CZSJ, header.KPR_ID, header.SQR_ID,
+        header.JG_ID, header.JG_MC, header.SQLX, header.BM_ID, header.BM_MC, header.SQR_DH, header.KPZT, header.SQ_TIME
+    </sql>
+
+
+    <sql id="ApplylineParam">
+        line.ID, line.APPLY_ID, line.FPHXZ, line.SPBM, line.ZXBM, line.YHZCBS, line.LSLBS, line.ZZSTSGL, line.XMMC, line.DW, line.GGXH, line.XMSL, line.XMDJ,
+        line.HSXMDJ, line.HSXMJE, line.XMJE, line.SL, line.SE, line.SEQ_NUM, line.CREATE_TIME, line.YWLX, line.YWBH, line.BZ, line.HSBZ
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from gpxx_apply_bill
+        where ID = #{id,jdbcType=INTEGER}
+    </select>
+   <select id="selectApplyList" resultMap="ApplyResultMap" parameterType="com.example.demo.bean.ApplyBillBO">
+       select
+       <include refid="Base_Column_List"/>
+       from gpxx_apply_bill
+       <where>
+           <if test="id != null">
+               ID = #{id,jdbcType=INTEGER}
+           </if>
+           <if test="sqrId != null">
+               and SQR_ID = #{sqrId, jdbcType=INTEGER}
+           </if>
+           <if test="lsh != null">
+               and LSH = #{lsh,jdbcType=VARCHAR}
+           </if>
+           <if test="applyOrderNum != null">
+               and APPLY_ORDER_NUM = #{applyOrderNum,jdbcType=VARCHAR}
+           </if>
+           <if test="kplx != null">
+               and KPLX = #{kplx,jdbcType=INTEGER}
+           </if>
+           <if test="xsfId != null">
+               and XSF_ID = #{xsfId,jdbcType=VARCHAR}
+           </if>
+           <if test="gmfNsrsbh != null">
+               and GMF_NSRSBH = #{gmfNsrsbh,jdbcType=VARCHAR}
+           </if>
+           <if test="gmfMc != null">
+               and GMF_MC = #{gmfMc,jdbcType=VARCHAR}
+           </if>
+           <if test="gmfDz != null">
+               and GMF_DZ = #{gmfDz,jdbcType=VARCHAR}
+           </if>
+           <if test="gmfDh != null">
+               and GMF_DH = #{gmfDh,jdbcType=VARCHAR}
+           </if>
+           <if test="gmfYhzh != null">
+               and GMF_YHZH = #{gmfYhzh,jdbcType=VARCHAR}
+           </if>
+           <if test="kpr != null">
+               and KPR = #{kpr,jdbcType=VARCHAR}
+           </if>
+           <if test="skr != null">
+               and SKR = #{skr,jdbcType=VARCHAR}
+           </if>
+           <if test="fhr != null">
+               and FHR = #{fhr,jdbcType=VARCHAR}
+           </if>
+           <if test="yfpDm != null">
+               and YFP_DM = #{yfpDm,jdbcType=VARCHAR}
+           </if>
+           <if test="yfpHm != null">
+               and YFP_HM = #{yfpHm,jdbcType=VARCHAR}
+           </if>
+           <if test="jshj != null">
+               and JSHJ = #{jshj,jdbcType=DOUBLE}
+           </if>
+           <if test="hjje != null">
+               and HJJE = #{hjje,jdbcType=DOUBLE}
+           </if>
+           <if test="hjse != null">
+               and HJSE = #{hjse,jdbcType=DOUBLE}
+           </if>
+           <if test="yx != null">
+               and YX = #{yx,jdbcType=VARCHAR}
+           </if>
+           <if test="sjh != null">
+               and SJH = #{sjh,jdbcType=VARCHAR}
+           </if>
+           <if test="sfhc != null">
+               and SFHC = #{sfhc,jdbcType=VARCHAR}
+           </if>
+           <if test="lyxt != null">
+               and LYXT = #{lyxt,jdbcType=VARCHAR}
+           </if>
+           <if test="createTime != null">
+               and CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+           </if>
+           <if test="source != null">
+               and SOURCE = #{source,jdbcType=VARCHAR}
+           </if>
+           <if test="wechatOpenid != null">
+               and WECHAT_OPENID = #{wechatOpenid,jdbcType=VARCHAR}
+           </if>
+           <if test="alipayOpenid != null">
+               and ALIPAY_OPENID = #{alipayOpenid,jdbcType=VARCHAR}
+           </if>
+           <if test="bz != null">
+               and BZ = #{bz,jdbcType=VARCHAR}
+           </if>
+           <if test="fpDm != null">
+               and FP_DM = #{fpDm,jdbcType=VARCHAR}
+           </if>
+           <if test="fpHm != null">
+               and FP_HM = #{fpHm,jdbcType=VARCHAR}
+           </if>
+           <if test="kprq != null">
+               and KPRQ = #{kprq,jdbcType=TIMESTAMP}
+           </if>
+           <if test="creator != null">
+               and CREATOR = #{creator,jdbcType=INTEGER}
+           </if>
+           <if test="gmfDzdh != null">
+               and GMF_DZDH = #{gmfDzdh,jdbcType=VARCHAR}
+           </if>
+           <if test="xsfJgid != null">
+               and XSF_JGID = #{xsfJgid,jdbcType=INTEGER}
+           </if>
+           <if test="xsfJgmc != null">
+               and XSF_JGMC = #{xsfJgmc,jdbcType=VARCHAR}
+           </if>
+           <if test="xsfBmid != null">
+               and XSF_BMID = #{xsfBmid,jdbcType=INTEGER}
+           </if>
+           <if test="xsfBmmc != null">
+               and XSF_BMMC = #{xsfBmmc,jdbcType=VARCHAR}
+           </if>
+           <if test="xsfNsrsbh != null">
+               and XSF_NSRSBH = #{xsfNsrsbh,jdbcType=VARCHAR}
+           </if>
+           <if test="kpzdbs != null">
+               and KPZDBS = #{kpzdbs,jdbcType=VARCHAR}
+           </if>
+           <if test="fplx != null">
+               and FPLX = #{fplx,jdbcType=VARCHAR}
+           </if>
+           <if test="qdbs != null">
+               and QDBS = #{qdbs,jdbcType=INTEGER}
+           </if>
+           <if test="zsfs != null">
+               and ZSFS = #{zsfs,jdbcType=INTEGER}
+           </if>
+           <if test="tspz != null">
+               and TSPZ = #{tspz,jdbcType=VARCHAR}
+           </if>
+           <if test="kce != null">
+               and KCE = #{kce,jdbcType=DECIMAL}
+           </if>
+           <if test="xxbbm != null">
+               and XXBBM = #{xxbbm,jdbcType=VARCHAR}
+           </if>
+           <if test="sqzt != null">
+               and SQZT = #{sqzt,jdbcType=INTEGER}
+           </if>
+           <if test="spzt != null">
+               and SPZT = #{spzt,jdbcType=INTEGER}
+           </if>
+           <if test="dysprId != null">
+               and DYSPR_ID = #{dysprId,jdbcType=INTEGER}
+           </if>
+           <if test="dysprMc != null">
+               and DYSPR_MC = #{dysprMc,jdbcType=VARCHAR}
+           </if>
+           <if test="dysprYj != null">
+               and DYSPR_YJ = #{dysprYj,jdbcType=VARCHAR}
+           </if>
+           <if test="dysprCzsj != null">
+               and DYSPR_CZSJ = #{dysprCzsj,jdbcType=TIMESTAMP}
+           </if>
+           <if test="desprId != null">
+               and DESPR_ID = #{desprId,jdbcType=INTEGER}
+           </if>
+           <if test="desprMc != null">
+               and DESPR_MC = #{desprMc,jdbcType=VARCHAR}
+           </if>
+           <if test="desprYj != null">
+               and DESPR_YJ = #{desprYj,jdbcType=VARCHAR}
+           </if>
+           <if test="drsprCzsj != null">
+               and DRSPR_CZSJ = #{drsprCzsj,jdbcType=TIMESTAMP}
+           </if>
+           <if test="kprId != null">
+               and KPR_ID = #{kprId,jdbcType=INTEGER}
+           </if>
+           <if test="sqrId != null">
+               and SQR_ID = #{sqrId,jdbcType=INTEGER}
+           </if>
+           <if test="jgId != null">
+               and JG_ID = #{jgId,jdbcType=INTEGER}
+           </if>
+           <if test="jgMc != null">
+               and JG_MC = #{jgMc,jdbcType=VARCHAR}
+           </if>
+           <if test="sqlx != null">
+               and SQLX = #{sqlx,jdbcType=INTEGER}
+           </if>
+           <if test="bmId != null">
+               and BM_ID = #{bmId,jdbcType=INTEGER}
+           </if>
+           <if test="bmMc != null">
+               and BM_MC = #{bmMc,jdbcType=VARCHAR}
+           </if>
+           <if test="sqrDh != null">
+               and SQR_DH = #{sqrDh,jdbcType=VARCHAR}
+           </if>
+           <if test="kpzt != null">
+               and KPZT = #{kpzt,jdbcType=INTEGER}
+           </if>
+           <if test="sqTime != null">
+               and SQ_TIME = #{sqTime,jdbcType=INTEGER}
+           </if>
+           <if test="startTime != null">
+               <![CDATA[
+                    and DATE_FORMAT(SQ_TIME,'%Y-%m-%d') >= DATE_FORMAT(#{startTime,jdbcType=TIMESTAMP},'%Y-%m-%d')
+                ]]>
+           </if>
+           <if test="endTime != null">
+               <![CDATA[
+                    and DATE_FORMAT(SQ_TIME,'%Y-%m-%d') <= DATE_FORMAT(#{endTime,jdbcType=TIMESTAMP},'%Y-%m-%d')
+                ]]>
+           </if>
+       </where>
+   </select>
+
+
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM gpxx_apply_bill
+
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from gpxx_apply_bill
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.example.demo.bean.ApplyBillBO">
+    insert into gpxx_apply_bill (ID, LSH,
+      KPLX, XSF_ID, GMF_NSRSBH, GMF_MC,
+      GMF_DZ, GMF_DH, GMF_YHZH,
+      KPR, SKR, FHR, YFP_DM,
+      YFP_HM, JSHJ, HJJE, HJSE,
+      YX, SJH, SFHC, LYXT,
+      CREATE_TIME, SOURCE, WECHAT_OPENID,
+      ALIPAY_OPENID, BZ, FP_DM,
+      FP_HM, KPRQ, CREATOR,
+      GMF_DZDH, XSF_JGID, XSF_JGMC,
+      XSF_BMID, XSF_BMMC, XSF_NSRSBH,
+      KPZDBS, FPLX, QDBS,
+      ZSFS, TSPZ, KCE, XXBBM,
+      SQZT, SPZT, DYSPR_ID, DYSPR_MC,
+      DYSPR_YJ, DYSPR_CZSJ, DESPR_ID,
+      DESPR_MC, DESPR_YJ, DRSPR_CZSJ,
+      KPR_ID, SQR_ID, SQR, JG_ID, JG_MC,
+      SQLX, BM_ID, BM_MC, SQR_DH,
+      KPZT, SQ_TIME)
+    values (#{id,jdbcType=INTEGER}, #{lsh,jdbcType=VARCHAR}, #{kplx,jdbcType=INTEGER},
+      #{xsfId,jdbcType=VARCHAR}, #{gmfNsrsbh,jdbcType=VARCHAR}, #{gmfMc,jdbcType=VARCHAR},
+      #{gmfDz,jdbcType=VARCHAR}, #{gmfDh,jdbcType=VARCHAR}, #{gmfYhzh,jdbcType=VARCHAR},
+      #{kpr,jdbcType=VARCHAR}, #{skr,jdbcType=VARCHAR}, #{fhr,jdbcType=VARCHAR}, #{yfpDm,jdbcType=VARCHAR},
+      #{yfpHm,jdbcType=VARCHAR}, #{jshj,jdbcType=DOUBLE}, #{hjje,jdbcType=DOUBLE}, #{hjse,jdbcType=DOUBLE},
+      #{yx,jdbcType=VARCHAR}, #{sjh,jdbcType=VARCHAR}, #{sfhc,jdbcType=VARCHAR}, #{lyxt,jdbcType=VARCHAR},
+      #{createTime,jdbcType=TIMESTAMP}, #{source,jdbcType=VARCHAR}, #{wechatOpenid,jdbcType=VARCHAR},
+      #{alipayOpenid,jdbcType=VARCHAR}, #{bz,jdbcType=VARCHAR}, #{fpDm,jdbcType=VARCHAR},
+      #{fpHm,jdbcType=VARCHAR}, #{kprq,jdbcType=TIMESTAMP}, #{creator,jdbcType=INTEGER},
+      #{gmfDzdh,jdbcType=VARCHAR}, #{xsfJgid,jdbcType=INTEGER}, #{xsfJgmc,jdbcType=VARCHAR},
+      #{xsfBmid,jdbcType=INTEGER}, #{xsfBmmc,jdbcType=VARCHAR}, #{xsfNsrsbh,jdbcType=VARCHAR},
+      #{kpzdbs,jdbcType=VARCHAR}, #{fplx,jdbcType=VARCHAR}, #{qdbs,jdbcType=INTEGER},
+      #{zsfs,jdbcType=INTEGER}, #{tspz,jdbcType=VARCHAR}, #{kce,jdbcType=DECIMAL}, #{xxbbm,jdbcType=VARCHAR},
+      #{sqzt,jdbcType=INTEGER}, #{spzt,jdbcType=INTEGER}, #{dysprId,jdbcType=INTEGER}, #{dysprMc,jdbcType=VARCHAR},
+      #{dysprYj,jdbcType=VARCHAR}, #{dysprCzsj,jdbcType=TIMESTAMP}, #{desprId,jdbcType=INTEGER},
+      #{desprMc,jdbcType=VARCHAR}, #{desprYj,jdbcType=VARCHAR}, #{drsprCzsj,jdbcType=TIMESTAMP},
+      #{kprId,jdbcType=INTEGER}, #{sqrId,jdbcType=INTEGER}, #{sqr,jdbcType=VARCHAR}, #{jgId,jdbcType=INTEGER}, #{jgMc,jdbcType=VARCHAR},
+      #{sqlx,jdbcType=INTEGER}, #{bmId,jdbcType=INTEGER}, #{bmMc,jdbcType=VARCHAR}, #{sqrDh,jdbcType=VARCHAR},
+      #{kpzt,jdbcType=INTEGER}, #{sqTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.example.demo.bean.ApplyBillBO" >
+        insert into gpxx_apply_bill
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="lsh != null">
+                LSH,
+            </if>
+            <if test="kplx != null">
+                KPLX,
+            </if>
+            <if test="xsfId != null">
+                XSF_ID,
+            </if>
+            <if test="gmfNsrsbh != null">
+                GMF_NSRSBH,
+            </if>
+            <if test="gmfMc != null">
+                GMF_MC,
+            </if>
+            <if test="gmfDz != null">
+                GMF_DZ,
+            </if>
+            <if test="gmfDh != null">
+                GMF_DH,
+            </if>
+            <if test="gmfYhzh != null">
+                GMF_YHZH,
+            </if>
+            <if test="kpr != null">
+                KPR,
+            </if>
+            <if test="skr != null">
+                SKR,
+            </if>
+            <if test="fhr != null">
+                FHR,
+            </if>
+            <if test="yfpDm != null">
+                YFP_DM,
+            </if>
+            <if test="yfpHm != null">
+                YFP_HM,
+            </if>
+            <if test="jshj != null">
+                JSHJ,
+            </if>
+            <if test="hjje != null">
+                HJJE,
+            </if>
+            <if test="hjse != null">
+                HJSE,
+            </if>
+            <if test="yx != null">
+                YX,
+            </if>
+            <if test="sjh != null">
+                SJH,
+            </if>
+            <if test="sfhc != null">
+                SFHC,
+            </if>
+            <if test="lyxt != null">
+                LYXT,
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME,
+            </if>
+            <if test="source != null">
+                SOURCE,
+            </if>
+            <if test="wechatOpenid != null">
+                WECHAT_OPENID,
+            </if>
+            <if test="alipayOpenid != null">
+                ALIPAY_OPENID,
+            </if>
+            <if test="bz != null">
+                BZ,
+            </if>
+            <if test="fpDm != null">
+                FP_DM,
+            </if>
+            <if test="fpHm != null">
+                FP_HM,
+            </if>
+            <if test="kprq != null">
+                KPRQ,
+            </if>
+            <if test="creator != null">
+                CREATOR,
+            </if>
+            <if test="gmfDzdh != null">
+                GMF_DZDH,
+            </if>
+            <if test="xsfJgid != null">
+                XSF_JGID,
+            </if>
+            <if test="xsfJgmc != null">
+                XSF_JGMC,
+            </if>
+            <if test="xsfBmid != null">
+                XSF_BMID,
+            </if>
+            <if test="xsfBmmc != null">
+                XSF_BMMC,
+            </if>
+            <if test="xsfNsrsbh != null">
+                XSF_NSRSBH,
+            </if>
+            <if test="kpzdbs != null">
+                KPZDBS,
+            </if>
+            <if test="fplx != null">
+                FPLX,
+            </if>
+            <if test="qdbs != null">
+                QDBS,
+            </if>
+            <if test="zsfs != null">
+                ZSFS,
+            </if>
+            <if test="tspz != null">
+                TSPZ,
+            </if>
+            <if test="kce != null">
+                KCE,
+            </if>
+            <if test="xxbbm != null">
+                XXBBM,
+            </if>
+            <if test="sqzt != null">
+                SQZT,
+            </if>
+            <if test="spzt != null">
+                SPZT,
+            </if>
+            <if test="dysprId != null">
+                DYSPR_ID,
+            </if>
+            <if test="dysprMc != null">
+                DYSPR_MC,
+            </if>
+            <if test="dysprYj != null">
+                DYSPR_YJ,
+            </if>
+            <if test="dysprCzsj != null">
+                DYSPR_CZSJ,
+            </if>
+            <if test="desprId != null">
+                DESPR_ID,
+            </if>
+            <if test="desprMc != null">
+                DESPR_MC,
+            </if>
+            <if test="desprYj != null">
+                DESPR_YJ,
+            </if>
+            <if test="drsprCzsj != null">
+                DRSPR_CZSJ,
+            </if>
+            <if test="kprId != null">
+                KPR_ID,
+            </if>
+            <if test="sqrId != null">
+                SQR_ID,
+            </if>
+            <if test="sqr != null">
+                SQR,
+            </if>
+            <if test="jgId != null">
+                JG_ID,
+            </if>
+            <if test="jgMc != null">
+                JG_MC,
+            </if>
+            <if test="sqlx != null">
+                SQLX,
+            </if>
+            <if test="bmId != null">
+                BM_ID,
+            </if>
+            <if test="bmMc != null">
+                BM_MC,
+            </if>
+            <if test="sqrDh != null">
+                SQR_DH,
+            </if>
+            <if test="kpzt != null">
+                KPZT,
+            </if>
+            <if test="sqTime != null">
+                SQ_TIME,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="lsh != null">
+                #{lsh,jdbcType=VARCHAR},
+            </if>
+            <if test="kplx != null">
+                #{kplx,jdbcType=INTEGER},
+            </if>
+            <if test="xsfId != null">
+                #{xsfId,jdbcType=VARCHAR},
+            </if>
+            <if test="gmfNsrsbh != null">
+                #{gmfNsrsbh,jdbcType=VARCHAR},
+            </if>
+            <if test="gmfMc != null">
+                #{gmfMc,jdbcType=VARCHAR},
+            </if>
+            <if test="gmfDz != null">
+                #{gmfDz,jdbcType=VARCHAR},
+            </if>
+            <if test="gmfDh != null">
+                #{gmfDh,jdbcType=VARCHAR},
+            </if>
+            <if test="gmfYhzh != null">
+                #{gmfYhzh,jdbcType=VARCHAR},
+            </if>
+            <if test="kpr != null">
+                #{kpr,jdbcType=VARCHAR},
+            </if>
+            <if test="skr != null">
+                #{skr,jdbcType=VARCHAR},
+            </if>
+            <if test="fhr != null">
+                #{fhr,jdbcType=VARCHAR},
+            </if>
+            <if test="yfpDm != null">
+                #{yfpDm,jdbcType=VARCHAR},
+            </if>
+            <if test="yfpHm != null">
+                #{yfpHm,jdbcType=VARCHAR},
+            </if>
+            <if test="jshj != null">
+                #{jshj,jdbcType=DOUBLE},
+            </if>
+            <if test="hjje != null">
+                #{hjje,jdbcType=DOUBLE},
+            </if>
+            <if test="hjse != null">
+                #{hjse,jdbcType=DOUBLE},
+            </if>
+            <if test="yx != null">
+                #{yx,jdbcType=VARCHAR},
+            </if>
+            <if test="sjh != null">
+                #{sjh,jdbcType=VARCHAR},
+            </if>
+            <if test="sfhc != null">
+                #{sfhc,jdbcType=VARCHAR},
+            </if>
+            <if test="lyxt != null">
+                #{lyxt,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="source != null">
+                #{source,jdbcType=VARCHAR},
+            </if>
+            <if test="wechatOpenid != null">
+                #{wechatOpenid,jdbcType=VARCHAR},
+            </if>
+            <if test="alipayOpenid != null">
+                #{alipayOpenid,jdbcType=VARCHAR},
+            </if>
+            <if test="bz != null">
+                #{bz,jdbcType=VARCHAR},
+            </if>
+            <if test="fpDm != null">
+                #{fpDm,jdbcType=VARCHAR},
+            </if>
+            <if test="fpHm != null">
+                #{fpHm,jdbcType=VARCHAR},
+            </if>
+            <if test="kprq != null">
+                #{kprq,jdbcType=TIMESTAMP},
+            </if>
+            <if test="creator != null">
+                #{creator,jdbcType=INTEGER},
+            </if>
+            <if test="gmfDzdh != null">
+                #{gmfDzdh,jdbcType=VARCHAR},
+            </if>
+            <if test="xsfJgid != null">
+                #{xsfJgid,jdbcType=INTEGER},
+            </if>
+            <if test="xsfJgmc != null">
+                #{xsfJgmc,jdbcType=VARCHAR},
+            </if>
+            <if test="xsfBmid != null">
+                #{xsfBmid,jdbcType=INTEGER},
+            </if>
+            <if test="xsfBmmc != null">
+                #{xsfBmmc,jdbcType=VARCHAR},
+            </if>
+            <if test="xsfNsrsbh != null">
+                #{xsfNsrsbh,jdbcType=VARCHAR},
+            </if>
+            <if test="kpzdbs != null">
+                #{kpzdbs,jdbcType=VARCHAR},
+            </if>
+            <if test="fplx != null">
+                #{fplx,jdbcType=VARCHAR},
+            </if>
+            <if test="qdbs != null">
+                #{qdbs,jdbcType=INTEGER},
+            </if>
+            <if test="zsfs != null">
+                #{zsfs,jdbcType=INTEGER},
+            </if>
+            <if test="tspz != null">
+                #{tspz,jdbcType=VARCHAR},
+            </if>
+            <if test="kce != null">
+                #{kce,jdbcType=DECIMAL},
+            </if>
+            <if test="xxbbm != null">
+                #{xxbbm,jdbcType=VARCHAR},
+            </if>
+            <if test="sqzt != null">
+                #{sqzt,jdbcType=INTEGER},
+            </if>
+            <if test="spzt != null">
+                #{spzt,jdbcType=INTEGER},
+            </if>
+            <if test="dysprId != null">
+                #{dysprId,jdbcType=INTEGER},
+            </if>
+            <if test="dysprMc != null">
+                #{dysprMc,jdbcType=VARCHAR},
+            </if>
+            <if test="dysprYj != null">
+                #{dysprYj,jdbcType=VARCHAR},
+            </if>
+            <if test="dysprCzsj != null">
+                #{dysprCzsj,jdbcType=TIMESTAMP},
+            </if>
+            <if test="desprId != null">
+                #{desprId,jdbcType=INTEGER},
+            </if>
+            <if test="desprMc != null">
+                #{desprMc,jdbcType=VARCHAR},
+            </if>
+            <if test="desprYj != null">
+                #{desprYj,jdbcType=VARCHAR},
+            </if>
+            <if test="drsprCzsj != null">
+                #{drsprCzsj,jdbcType=TIMESTAMP},
+            </if>
+            <if test="kprId != null">
+                #{kprId,jdbcType=INTEGER},
+            </if>
+            <if test="sqrId != null">
+                #{sqrId,jdbcType=INTEGER},
+            </if>
+            <if test="sqr != null">
+                #{sqr,jdbcType=VARCHAR},
+            </if>
+            <if test="jgId != null">
+                #{jgId,jdbcType=INTEGER},
+            </if>
+            <if test="jgMc != null">
+                #{jgMc,jdbcType=VARCHAR},
+            </if>
+            <if test="sqlx != null">
+                #{sqlx,jdbcType=INTEGER},
+            </if>
+            <if test="bmId != null">
+                #{bmId,jdbcType=INTEGER},
+            </if>
+            <if test="bmMc != null">
+                #{bmMc,jdbcType=VARCHAR},
+            </if>
+            <if test="sqrDh != null">
+                #{sqrDh,jdbcType=VARCHAR},
+            </if>
+            <if test="kpzt != null">
+                #{kpzt,jdbcType=INTEGER},
+            </if>
+            <if test="sqTime != null">
+                #{sqTime,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.bean.ApplyBillBO">
+        update gpxx_apply_bill
+        <set>
+            <if test="lsh != null">
+                LSH = #{lsh,jdbcType=VARCHAR},
+            </if>
+            <if test="kplx != null">
+                KPLX = #{kplx,jdbcType=INTEGER},
+            </if>
+            <if test="xsfId != null">
+                XSF_ID = #{xsfId,jdbcType=VARCHAR},
+            </if>
+            <if test="gmfNsrsbh != null">
+                GMF_NSRSBH = #{gmfNsrsbh,jdbcType=VARCHAR},
+            </if>
+            <if test="gmfMc != null">
+                GMF_MC = #{gmfMc,jdbcType=VARCHAR},
+            </if>
+            <if test="gmfDz != null">
+                GMF_DZ = #{gmfDz,jdbcType=VARCHAR},
+            </if>
+            <if test="gmfDh != null">
+                GMF_DH = #{gmfDh,jdbcType=VARCHAR},
+            </if>
+            <if test="gmfYhzh != null">
+                GMF_YHZH = #{gmfYhzh,jdbcType=VARCHAR},
+            </if>
+            <if test="kpr != null">
+                KPR = #{kpr,jdbcType=VARCHAR},
+            </if>
+            <if test="skr != null">
+                SKR = #{skr,jdbcType=VARCHAR},
+            </if>
+            <if test="fhr != null">
+                FHR = #{fhr,jdbcType=VARCHAR},
+            </if>
+            <if test="yfpDm != null">
+                YFP_DM = #{yfpDm,jdbcType=VARCHAR},
+            </if>
+            <if test="yfpHm != null">
+                YFP_HM = #{yfpHm,jdbcType=VARCHAR},
+            </if>
+            <if test="jshj != null">
+                JSHJ = #{jshj,jdbcType=DOUBLE},
+            </if>
+            <if test="hjje != null">
+                HJJE = #{hjje,jdbcType=DOUBLE},
+            </if>
+            <if test="hjse != null">
+                HJSE = #{hjse,jdbcType=DOUBLE},
+            </if>
+            <if test="yx != null">
+                YX = #{yx,jdbcType=VARCHAR},
+            </if>
+            <if test="sjh != null">
+                SJH = #{sjh,jdbcType=VARCHAR},
+            </if>
+            <if test="sfhc != null">
+                SFHC = #{sfhc,jdbcType=VARCHAR},
+            </if>
+            <if test="lyxt != null">
+                LYXT = #{lyxt,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="source != null">
+                SOURCE = #{source,jdbcType=VARCHAR},
+            </if>
+            <if test="wechatOpenid != null">
+                WECHAT_OPENID = #{wechatOpenid,jdbcType=VARCHAR},
+            </if>
+            <if test="alipayOpenid != null">
+                ALIPAY_OPENID = #{alipayOpenid,jdbcType=VARCHAR},
+            </if>
+            <if test="bz != null">
+                BZ = #{bz,jdbcType=VARCHAR},
+            </if>
+            <if test="fpDm != null">
+                FP_DM = #{fpDm,jdbcType=VARCHAR},
+            </if>
+            <if test="fpHm != null">
+                FP_HM = #{fpHm,jdbcType=VARCHAR},
+            </if>
+            <if test="kprq != null">
+                KPRQ = #{kprq,jdbcType=TIMESTAMP},
+            </if>
+            <if test="creator != null">
+                CREATOR = #{creator,jdbcType=INTEGER},
+            </if>
+            <if test="gmfDzdh != null">
+                GMF_DZDH = #{gmfDzdh,jdbcType=VARCHAR},
+            </if>
+            <if test="xsfJgid != null">
+                XSF_JGID = #{xsfJgid,jdbcType=INTEGER},
+            </if>
+            <if test="xsfJgmc != null">
+                XSF_JGMC = #{xsfJgmc,jdbcType=VARCHAR},
+            </if>
+            <if test="xsfBmid != null">
+                XSF_BMID = #{xsfBmid,jdbcType=INTEGER},
+            </if>
+            <if test="xsfBmmc != null">
+                XSF_BMMC = #{xsfBmmc,jdbcType=VARCHAR},
+            </if>
+            <if test="xsfNsrsbh != null">
+                XSF_NSRSBH = #{xsfNsrsbh,jdbcType=VARCHAR},
+            </if>
+            <if test="kpzdbs != null">
+                KPZDBS = #{kpzdbs,jdbcType=VARCHAR},
+            </if>
+            <if test="fplx != null">
+                FPLX = #{fplx,jdbcType=VARCHAR},
+            </if>
+            <if test="qdbs != null">
+                QDBS = #{qdbs,jdbcType=INTEGER},
+            </if>
+            <if test="zsfs != null">
+                ZSFS = #{zsfs,jdbcType=INTEGER},
+            </if>
+            <if test="tspz != null">
+                TSPZ = #{tspz,jdbcType=VARCHAR},
+            </if>
+            <if test="kce != null">
+                KCE = #{kce,jdbcType=DECIMAL},
+            </if>
+            <if test="xxbbm != null">
+                XXBBM = #{xxbbm,jdbcType=VARCHAR},
+            </if>
+            <if test="sqzt != null">
+                SQZT = #{sqzt,jdbcType=INTEGER},
+            </if>
+            <if test="spzt != null">
+                SPZT = #{spzt,jdbcType=INTEGER},
+            </if>
+            <if test="dysprId != null">
+                DYSPR_ID = #{dysprId,jdbcType=INTEGER},
+            </if>
+            <if test="dysprMc != null">
+                DYSPR_MC = #{dysprMc,jdbcType=VARCHAR},
+            </if>
+            <if test="dysprYj != null">
+                DYSPR_YJ = #{dysprYj,jdbcType=VARCHAR},
+            </if>
+            <if test="dysprCzsj != null">
+                DYSPR_CZSJ = #{dysprCzsj,jdbcType=TIMESTAMP},
+            </if>
+            <if test="desprId != null">
+                DESPR_ID = #{desprId,jdbcType=INTEGER},
+            </if>
+            <if test="desprMc != null">
+                DESPR_MC = #{desprMc,jdbcType=VARCHAR},
+            </if>
+            <if test="desprYj != null">
+                DESPR_YJ = #{desprYj,jdbcType=VARCHAR},
+            </if>
+            <if test="drsprCzsj != null">
+                DRSPR_CZSJ = #{drsprCzsj,jdbcType=TIMESTAMP},
+            </if>
+            <if test="kprId != null">
+                KPR_ID = #{kprId,jdbcType=INTEGER},
+            </if>
+            <if test="kprCzsj != null">
+                KPR_CZSJ = #{kprCzsj,jdbcType=TIMESTAMP},
+            </if>
+            <if test="sqrId != null">
+                SQR_ID = #{sqrId,jdbcType=INTEGER},
+            </if>
+            <if test="sqr != null">
+                SQR = #{sqr,jdbcType=VARCHAR},
+            </if>
+            <if test="jgId != null">
+                JG_ID = #{jgId,jdbcType=INTEGER},
+            </if>
+            <if test="jgMc != null">
+                JG_MC = #{jgMc,jdbcType=VARCHAR},
+            </if>
+            <if test="sqlx != null">
+                SQLX = #{sqlx,jdbcType=INTEGER},
+            </if>
+            <if test="bmId != null">
+                BM_ID = #{bmId,jdbcType=INTEGER},
+            </if>
+            <if test="bmMc != null">
+                BM_MC = #{bmMc,jdbcType=VARCHAR},
+            </if>
+            <if test="sqrDh != null">
+                SQR_DH = #{sqrDh,jdbcType=VARCHAR},
+            </if>
+            <if test="kpzt != null">
+                KPZT = #{kpzt,jdbcType=INTEGER},
+            </if>
+            <if test="sqTime != null">
+                KPZT = #{sqTime,jdbcType=INTEGER},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.example.demo.bean.ApplyBillBO">
+    update gpxx_apply_bill
+    set LSH = #{lsh,jdbcType=VARCHAR},
+      KPLX = #{kplx,jdbcType=INTEGER},
+      XSF_ID = #{xsfId,jdbcType=VARCHAR},
+      GMF_NSRSBH = #{gmfNsrsbh,jdbcType=VARCHAR},
+      GMF_MC = #{gmfMc,jdbcType=VARCHAR},
+      GMF_DZ = #{gmfDz,jdbcType=VARCHAR},
+      GMF_DH = #{gmfDh,jdbcType=VARCHAR},
+      GMF_YHZH = #{gmfYhzh,jdbcType=VARCHAR},
+      KPR = #{kpr,jdbcType=VARCHAR},
+      SKR = #{skr,jdbcType=VARCHAR},
+      FHR = #{fhr,jdbcType=VARCHAR},
+      YFP_DM = #{yfpDm,jdbcType=VARCHAR},
+      YFP_HM = #{yfpHm,jdbcType=VARCHAR},
+      JSHJ = #{jshj,jdbcType=DOUBLE},
+      HJJE = #{hjje,jdbcType=DOUBLE},
+      HJSE = #{hjse,jdbcType=DOUBLE},
+      YX = #{yx,jdbcType=VARCHAR},
+      SJH = #{sjh,jdbcType=VARCHAR},
+      SFHC = #{sfhc,jdbcType=VARCHAR},
+      LYXT = #{lyxt,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      SOURCE = #{source,jdbcType=VARCHAR},
+      WECHAT_OPENID = #{wechatOpenid,jdbcType=VARCHAR},
+      ALIPAY_OPENID = #{alipayOpenid,jdbcType=VARCHAR},
+      BZ = #{bz,jdbcType=VARCHAR},
+      FP_DM = #{fpDm,jdbcType=VARCHAR},
+      FP_HM = #{fpHm,jdbcType=VARCHAR},
+      KPRQ = #{kprq,jdbcType=TIMESTAMP},
+      CREATOR = #{creator,jdbcType=INTEGER},
+      GMF_DZDH = #{gmfDzdh,jdbcType=VARCHAR},
+      XSF_JGID = #{xsfJgid,jdbcType=INTEGER},
+      XSF_JGMC = #{xsfJgmc,jdbcType=VARCHAR},
+      XSF_BMID = #{xsfBmid,jdbcType=INTEGER},
+      XSF_BMMC = #{xsfBmmc,jdbcType=VARCHAR},
+      XSF_NSRSBH = #{xsfNsrsbh,jdbcType=VARCHAR},
+      KPZDBS = #{kpzdbs,jdbcType=VARCHAR},
+      FPLX = #{fplx,jdbcType=VARCHAR},
+      QDBS = #{qdbs,jdbcType=INTEGER},
+      ZSFS = #{zsfs,jdbcType=INTEGER},
+      TSPZ = #{tspz,jdbcType=VARCHAR},
+      KCE = #{kce,jdbcType=DECIMAL},
+      XXBBM = #{xxbbm,jdbcType=VARCHAR},
+      SQZT = #{sqzt,jdbcType=INTEGER},
+      SPZT = #{spzt,jdbcType=INTEGER},
+      DYSPR_ID = #{dysprId,jdbcType=INTEGER},
+      DYSPR_MC = #{dysprMc,jdbcType=VARCHAR},
+      DYSPR_YJ = #{dysprYj,jdbcType=VARCHAR},
+      DYSPR_CZSJ = #{dysprCzsj,jdbcType=TIMESTAMP},
+      DESPR_ID = #{desprId,jdbcType=INTEGER},
+      DESPR_MC = #{desprMc,jdbcType=VARCHAR},
+      DESPR_YJ = #{desprYj,jdbcType=VARCHAR},
+      DRSPR_CZSJ = #{drsprCzsj,jdbcType=TIMESTAMP},
+      KPR_ID = #{kprId,jdbcType=INTEGER},
+      SQR_ID = #{sqrId,jdbcType=INTEGER},
+      SQR = #{sqr,jdbcType=VARCHAR},
+      JG_ID = #{jgId,jdbcType=INTEGER},
+      JG_MC = #{jgMc,jdbcType=VARCHAR},
+      SQLX = #{sqlx,jdbcType=INTEGER},
+      BM_ID = #{bmId,jdbcType=INTEGER},
+      BM_MC = #{bmMc,jdbcType=VARCHAR},
+      SQR_DH = #{sqrDh,jdbcType=VARCHAR},
+      KPZT = #{kpzt,jdbcType=INTEGER},
+      SQ_TIME = #{sqTime,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+
+    <!--查询审批信息条数-->
+    <select id="countApproval" resultType="java.lang.Integer" parameterType="Integer">
+      select count(ID) from gpxx_apply_bill bill
+      where
+        SPZT = 0
+      and
+        SQZT = 2
+      and
+        #{id} in (bill.DYSPR_ID, bill.DESPR_ID, bill.KPR_ID)
+    </select>
+
+
+    <!--获取审批开票数据列表-->
+    <select id="selectApprovalList" resultMap="ApplyResultMap" parameterType="com.example.demo.bean.ApplyBillBO">
+        select
+        <include refid="Base_Column_List"/>
+        from gpxx_apply_bill
+        <where>
+            SQZT = 2
+            <if test="id != null">
+                and ID = #{id,jdbcType=INTEGER}
+            </if>
+            <if test="lsh != null">
+                and LSH = #{lsh,jdbcType=VARCHAR}
+            </if>
+            <if test="kplx != null">
+                and KPLX = #{kplx,jdbcType=INTEGER}
+            </if>
+            <if test="xsfId != null">
+                and XSF_ID = #{xsfId,jdbcType=VARCHAR}
+            </if>
+            <if test="gmfNsrsbh != null">
+                and GMF_NSRSBH = #{gmfNsrsbh,jdbcType=VARCHAR}
+            </if>
+            <if test="gmfMc != null">
+                and GMF_MC = #{gmfMc,jdbcType=VARCHAR}
+            </if>
+            <if test="gmfDz != null">
+                and GMF_DZ = #{gmfDz,jdbcType=VARCHAR}
+            </if>
+            <if test="gmfDh != null">
+                and GMF_DH = #{gmfDh,jdbcType=VARCHAR}
+            </if>
+            <if test="gmfYhzh != null">
+                and GMF_YHZH = #{gmfYhzh,jdbcType=VARCHAR}
+            </if>
+            <if test="kpr != null">
+                and KPR = #{kpr,jdbcType=VARCHAR}
+            </if>
+            <if test="skr != null">
+                and SKR = #{skr,jdbcType=VARCHAR}
+            </if>
+            <if test="fhr != null">
+                and FHR = #{fhr,jdbcType=VARCHAR}
+            </if>
+            <if test="yfpDm != null">
+                and YFP_DM = #{yfpDm,jdbcType=VARCHAR}
+            </if>
+            <if test="yfpHm != null">
+                and YFP_HM = #{yfpHm,jdbcType=VARCHAR}
+            </if>
+            <if test="jshj != null">
+                and JSHJ = #{jshj,jdbcType=DOUBLE}
+            </if>
+            <if test="hjje != null">
+                and HJJE = #{hjje,jdbcType=DOUBLE}
+            </if>
+            <if test="hjse != null">
+                and HJSE = #{hjse,jdbcType=DOUBLE}
+            </if>
+            <if test="yx != null">
+                and YX = #{yx,jdbcType=VARCHAR}
+            </if>
+            <if test="sjh != null">
+                and SJH = #{sjh,jdbcType=VARCHAR}
+            </if>
+            <if test="sfhc != null">
+                and SFHC = #{sfhc,jdbcType=VARCHAR}
+            </if>
+            <if test="lyxt != null">
+                and LYXT = #{lyxt,jdbcType=VARCHAR}
+            </if>
+            <if test="createTime != null">
+                and CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="source != null">
+                and SOURCE = #{source,jdbcType=VARCHAR}
+            </if>
+            <if test="wechatOpenid != null">
+                and WECHAT_OPENID = #{wechatOpenid,jdbcType=VARCHAR}
+            </if>
+            <if test="alipayOpenid != null">
+                and ALIPAY_OPENID = #{alipayOpenid,jdbcType=VARCHAR}
+            </if>
+            <if test="bz != null">
+                and BZ = #{bz,jdbcType=VARCHAR}
+            </if>
+            <if test="fpDm != null">
+                and FP_DM = #{fpDm,jdbcType=VARCHAR}
+            </if>
+            <if test="fpHm != null">
+                and FP_HM = #{fpHm,jdbcType=VARCHAR}
+            </if>
+            <if test="kprq != null">
+                and KPRQ = #{kprq,jdbcType=TIMESTAMP}
+            </if>
+            <if test="creator != null">
+                and CREATOR = #{creator,jdbcType=INTEGER}
+            </if>
+            <if test="gmfDzdh != null">
+                and GMF_DZDH = #{gmfDzdh,jdbcType=VARCHAR}
+            </if>
+            <if test="xsfJgid != null">
+                and XSF_JGID = #{xsfJgid,jdbcType=INTEGER}
+            </if>
+            <if test="xsfJgmc != null">
+                and XSF_JGMC = #{xsfJgmc,jdbcType=VARCHAR}
+            </if>
+            <if test="xsfBmid != null">
+                and XSF_BMID = #{xsfBmid,jdbcType=INTEGER}
+            </if>
+            <if test="xsfBmmc != null">
+                and XSF_BMMC = #{xsfBmmc,jdbcType=VARCHAR}
+            </if>
+            <if test="xsfNsrsbh != null">
+                and XSF_NSRSBH = #{xsfNsrsbh,jdbcType=VARCHAR}
+            </if>
+            <if test="kpzdbs != null">
+                and KPZDBS = #{kpzdbs,jdbcType=VARCHAR}
+            </if>
+            <if test="fplx != null">
+                and FPLX = #{fplx,jdbcType=VARCHAR}
+            </if>
+            <if test="qdbs != null">
+                and QDBS = #{qdbs,jdbcType=INTEGER}
+            </if>
+            <if test="zsfs != null">
+                and ZSFS = #{zsfs,jdbcType=INTEGER}
+            </if>
+            <if test="tspz != null">
+                and TSPZ = #{tspz,jdbcType=VARCHAR}
+            </if>
+            <if test="kce != null">
+                and KCE = #{kce,jdbcType=DECIMAL}
+            </if>
+            <if test="xxbbm != null">
+                and XXBBM = #{xxbbm,jdbcType=VARCHAR}
+            </if>
+            <if test="spzt != null and sprId != null">
+                and SPZT in (
+                <foreach collection="realSqzts" item="spzt" separator=",">
+                    #{spzt, jdbcType=INTEGER}
+                </foreach>
+                )
+            </if>
+            <if test="dysprId != null">
+                and DYSPR_ID = #{dysprId,jdbcType=INTEGER}
+            </if>
+            <if test="dysprMc != null">
+                and DYSPR_MC = #{dysprMc,jdbcType=VARCHAR}
+            </if>
+            <if test="dysprYj != null">
+                and DYSPR_YJ = #{dysprYj,jdbcType=VARCHAR}
+            </if>
+            <if test="dysprCzsj != null">
+                and DYSPR_CZSJ = #{dysprCzsj,jdbcType=TIMESTAMP}
+            </if>
+            <if test="desprId != null">
+                and DESPR_ID = #{desprId,jdbcType=INTEGER}
+            </if>
+            <if test="desprMc != null">
+                and DESPR_MC = #{desprMc,jdbcType=VARCHAR}
+            </if>
+            <if test="desprYj != null">
+                and DESPR_YJ = #{desprYj,jdbcType=VARCHAR}
+            </if>
+            <if test="drsprCzsj != null">
+                and DRSPR_CZSJ = #{drsprCzsj,jdbcType=TIMESTAMP}
+            </if>
+            <if test="kprId != null">
+                and KPR_ID = #{kprId,jdbcType=INTEGER}
+            </if>
+            <if test="sqrId != null">
+                and SQR_ID = #{sqrId,jdbcType=INTEGER}
+            </if>
+            <if test="jgId != null">
+                and JG_ID = #{jgId,jdbcType=INTEGER}
+            </if>
+            <if test="jgMc != null">
+                and JG_MC = #{jgMc,jdbcType=VARCHAR}
+            </if>
+            <if test="sqlx != null">
+                and SQLX = #{sqlx,jdbcType=INTEGER}
+            </if>
+            <if test="bmId != null">
+                and BM_ID = #{bmId,jdbcType=INTEGER}
+            </if>
+            <if test="bmMc != null">
+                and BM_MC = #{bmMc,jdbcType=VARCHAR}
+            </if>
+            <if test="sqrDh != null">
+                and SQR_DH = #{sqrDh,jdbcType=VARCHAR}
+            </if>
+            <if test="kpzt != null">
+                and KPZT = #{kpzt,jdbcType=INTEGER}
+            </if>
+            <if test="sqTime != null">
+                and SQ_TIME = #{sqTime,jdbcType=INTEGER}
+            </if>
+            <if test="startTime != null">
+                <![CDATA[
+                    and DATE_FORMAT(SQ_TIME,'%Y-%m-%d') >= DATE_FORMAT(#{startTime,jdbcType=TIMESTAMP},'%Y-%m-%d')
+                ]]>
+            </if>
+            <if test="endTime != null">
+                <![CDATA[
+                    and DATE_FORMAT(SQ_TIME,'%Y-%m-%d') <= DATE_FORMAT(#{endTime,jdbcType=TIMESTAMP},'%Y-%m-%d')
+                ]]>
+            </if>
+            <if test="sqrId != null">
+                and SQR_ID = #{sqrId, jdbcType=INTEGER}
+            </if>
+            <if test="sprId != null">
+                and #{sprId} in (DYSPR_ID, DESPR_ID, KPR_ID)
+            </if>
+
+
+        </where>
+    </select>
+  <select id="selectApply" resultMap="ApplyResultMap">
+    select 
+    <include refid="ApplyHeaderParam"/>,
+    <include refid="ApplylineParam"/>
+      from gpxx_apply_bill header
+      left join gpxx_apply_bill_line line on header.ID = line.APPLY_ID
+      <where>
+          <if test="id != null">
+              header.ID = #{id,jdbcType=INTEGER}
+          </if>
+      </where>
+  </select>
+</mapper>
